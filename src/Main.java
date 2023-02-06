@@ -3,16 +3,16 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<String> stringList3 = new ArrayList<String>(Arrays.asList("these", "sly", "words", "pork", "ugly", "you", "contains", "umm", "by", "several", "sky", "words", "psh", "apple"));
-        ArrayListAlgorithms.wackyVowels(stringList3);
-        System.out.println(stringList3);
+        ArrayList<String> myWordList = new ArrayList<String>(Arrays.asList("apple", "banana", "cherry", "donut", "bagel", "danish", "berry", "baguette", "soda"));
+        ArrayListAlgorithms.moveBWords(myWordList);
+        System.out.println(myWordList);
 
-        ArrayList<String> stringList4 = new ArrayList<String>(Arrays.asList("sly", "ugly", "umm", "psh"));
-        ArrayListAlgorithms.wackyVowels(stringList4);
-        System.out.println(stringList4);
+        ArrayList<String> myWordList2 = new ArrayList<String>(Arrays.asList("apple", "cherry", "donut", "danish", "soda", "banana", "bagel",  "berry", "baguette"));
+        ArrayListAlgorithms.moveBWords(myWordList2);
+        System.out.println(myWordList2);
 
-        ArrayList<String> stringList5 = new ArrayList<String>(Arrays.asList("these", "words", "pork", "contains"));
-        ArrayListAlgorithms.wackyVowels(stringList5);
-        System.out.println(stringList5);
+        ArrayList<String> myWordList3 = new ArrayList<String>(Arrays.asList("banana", "bagel",  "berry", "baguette", "apple", "cherry", "donut", "danish", "soda"));
+        ArrayListAlgorithms.moveBWords(myWordList3);
+        System.out.println(myWordList3);
     }
 }

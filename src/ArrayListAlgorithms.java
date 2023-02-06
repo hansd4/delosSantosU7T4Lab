@@ -151,4 +151,154 @@ public class ArrayListAlgorithms {
             i++;
         }
     }
+
+    /** Adds an uppercase version of each string directly AFTER the string
+     *  in wordList; for example, if wordList is ["hello", "my", "best", "friend"]
+     *  this this method modifies wordList to be:
+     *  ["hello", "HELLO", "my", "MY", "best", "BEST", "friend", "FRIEND"]
+     *
+     *  Assume all words have lowercase letters originally
+     *
+     *  DOES mutate (modify) elements in wordList
+     *  PRECONDITION: wordList.size() > 0
+     *
+     *  @param wordList  arraylist of Strings
+     */
+    public static void duplicateUpperAfter(ArrayList<String> wordList) {
+        for (int i = 0; i < wordList.size(); i++) {
+            wordList.add(i + 1, wordList.get(i).toUpperCase());
+            i++;
+        }
+    }
+
+    /** Appends an uppercase version of each string to the END of of wordList;
+     *  the uppercase versions appear in the same order as the lowercase versions
+     *  for example, if wordList is ["hello", "my", "best", "friend"]
+     *  this this method modifies wordList to be:
+     *  ["hello", "my", "best", "friend", "HELLO", "MY", "BEST", "FRIEND"]
+     *
+     *  Assume all words have lowercase letters originally
+     *
+     *  DOES mutate (modify) elements in wordList
+     *  PRECONDITION: wordList.size() > 0
+     *
+     *  @param wordList  arraylist of Strings
+     */
+    public static void duplicateUpperEnd(ArrayList<String> wordList) {
+        int originalSize = wordList.size();
+        for (int i = 0; i < originalSize; i++) {
+            wordList.add(i + originalSize, wordList.get(i).toUpperCase());
+        }
+    }
+
+    /** Returns an arraylist of Strings that represents the input sentence parsed
+     *  into separate words (using a space: " " as the delimiter) and REVERSED
+     *  For example, if sentence = "This is my sentence!"
+     *  this method return [sentence!, my, is, This]
+     *
+     *  PRECONDITION: sentence does not end with a space
+     *
+     *  @param sentence  the input String that represents one or more words
+    separated by spaces
+     *  @return  new arraylist of Strings containing the words of sentence reversed
+     */
+    public static ArrayList<String> parseWordsAndReverse(String sentence) {
+        ArrayList<String> words = new ArrayList<>();
+        int lastSpace = sentence.length();
+        for (int i = sentence.length() - 1; i >= 0; i--) {
+            if (sentence.substring(i, i+1).equals(" ")) {
+                words.add(sentence.substring(i + 1, lastSpace));
+                lastSpace = i;
+            }
+        }
+        words.add(sentence.substring(0, lastSpace));
+        return words;
+    }
+
+    /** Removes all duplicate values from an intList, leaving only the first
+     *  occurrence in the arrayList; for example, this method will modify
+     *  [1, 2, 5, 4, 2, 2, 1, 6, 4, 4, 8, 1, 7, 4, 2] --> [1, 2, 5, 4, 6, 8, 7]
+     *
+     *  DOES mutate (modify) elements in intList
+     *  PRECONDITION: intList.size() > 0
+     *
+     *  @param intList  intList of Integers
+     */
+    public static void removeDuplicates(ArrayList<Integer> intList) {
+        for (int i = 0 ; i < intList.size(); i++) {
+            for (int j = i + 1; j < intList.size(); j++) {
+                if (intList.get(i) == intList.get(j)) {
+                    intList.remove(j);
+                    j--;
+                }
+            }
+        }
+    }
+
+    /** Moves all words in wordList that begin with "b" to the front of
+     *  wordList; all "b" words that are moved should appear in the same order
+     *  in the modified arrayList as they did before being moved
+     *
+     *  For example, this method will take a wordList:
+     *  ["apple", "banana", "cherry", "donut", "bagel", "danish", "berry", "baguette", "soda"]
+     *  and modify it to
+     *  ["banana", "bagel", "berry", "baguette", "apple", "cherry", "donut", "danish", "soda"]
+     *
+     *  DOES mutate (modify) elements in wordList
+     *  PRECONDITIONS: - wordList.size() > 0
+     *                 - all strings in wordList have length >= 1
+     *
+     *  @param wordList  arraylist of words
+     */
+    public static void moveBWords(ArrayList<String> wordList) {
+        int numB = 0;
+        for (int i = 0; i < wordList.size(); i++) {
+            if (wordList.get(i).substring(0, 1).equals("b")) {
+                wordList.add(numB, wordList.remove(i));
+                numB++;
+            }
+        }
+    }
+
+    /** Returns an arraylist of Integers that contain all mode(s) of the array numList.
+     *  The mode of a list is the value that appears the greatest number of times.
+     *  A list can have one mode, multiple mode, or no mode.
+     *
+     *  If all elements in the list appear the exact same number of times, there is no
+     *  mode and this method should return an empty arraylist.
+     *
+     *  For example, if numList is: [1, 2, 6, 2, 3, 4, 6, 5, 5, 6, 7],
+     *  then numList contains one mode: 6
+     *  and this method returns an arrayList containing 6
+     *
+     *  If numList is: [1, 2, 3, 2, 4, 5, 5, 6],
+     *  then numList contains two modes: 2, 5
+     *  and this method returns an arraylist containing 2 and 5 (in any order)
+     *
+     *  If numList is: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+     *  then numList contains no mode because all values appear the same number of times
+     *  and this method returns an empty arrayList: []
+     *
+     *  If numList is: [2, 2, 2, 3, 3, 3, 4, 4, 4],
+     *  then numList contains three modes: 2, 3, 4
+     *  and this method returns an arrayList containing 2, 3, and 4 (in any order)
+     *
+     *  Does NOT mutate (modify) elements in numList
+     *  PRECONDITIONS: numList.length > 0
+     *
+     *  @param numList  numList of ints
+     */
+    public static ArrayList<Integer> modes(int[] numList) {
+        int maxValue = Integer.MIN_VALUE;
+        for (int num : numList) {
+            if (num > maxValue) {
+                maxValue = num;
+            }
+        }
+        int[] numFrequencies = new int[maxValue]
+        for (int num : numList) {
+            numFrequencies[num]++;
+        }
+
+    }
 }
