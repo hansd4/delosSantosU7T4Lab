@@ -319,4 +319,27 @@ public class ArrayListAlgorithms {
         }
         return distinctFrequencies == 1 ? new ArrayList<>(Arrays.asList(new Integer[0])) : modes;
     }
+
+    public static void sortStudents(ArrayList<Student> studentsToSort) {
+        boolean sorted = false;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < studentsToSort.size() - 1; i++) {
+                if (studentsToSort.get(i).getLastName().compareTo(studentsToSort.get(i+1).getLastName()) > 0) {
+                    studentsToSort.add(i+1, studentsToSort.remove(i));
+                    sorted = false;
+                } else if (studentsToSort.get(i).getLastName().compareTo(studentsToSort.get(i+1).getLastName()) == 0) {
+                    if (studentsToSort.get(i).getFirstName().compareTo(studentsToSort.get(i+1).getFirstName()) > 0) {
+                        studentsToSort.add(i+1, studentsToSort.remove(i));
+                        sorted = false;
+                    } else if (studentsToSort.get(i).getFirstName().compareTo(studentsToSort.get(i+1).getFirstName()) == 0) {
+                        if (studentsToSort.get(i).getGpa() > studentsToSort.get(i).getGpa()) {
+                            studentsToSort.add(i+1, studentsToSort.remove(i));
+                            sorted = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

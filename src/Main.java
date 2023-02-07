@@ -3,35 +3,34 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] intList18 = {1, 2, 3, 2, 4, 5, 5, 6};
-        ArrayList<Integer> modes = ArrayListAlgorithms.modes(intList18);
-        System.out.println(modes);
+        Student s1 = new Student("Abby", "Smith", 96.7);
+        Student s2 = new Student("Michelle", "Jones", 98.1);
+        Student s3 = new Student("Chase", "Bean", 95.2);
+        Student s4 = new Student("Jack", "Clancy", 97.3);
+        Student s5 = new Student("Brittany", "Jones", 95.5);
+        Student s6 = new Student("Lisa", "Frank", 92.4);
+        Student s7 = new Student("Marie", "Angelina", 96.5);
+        Student s8 = new Student("Peter", "Frank", 97.9);
+        Student s9 = new Student("Lisa", "Frank", 99.5);
+        Student s10 = new Student("Dean", "Jones", 93.2);
 
-        int[] intList19 = {1, 2, 6, 2, 3, 4, 6, 5, 5, 6, 7};
-        ArrayList<Integer> modes2 = ArrayListAlgorithms.modes(intList19);
-        System.out.println(modes2);
+        ArrayList<Student> students = new ArrayList<Student>(Arrays.asList(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10));
+        System.out.println("UNSORTED:");
+        int count = 1;
+        for (Student student : students) {
+            System.out.println(count + ": " + student);
+            count++;
+        }
 
-        int[] intList20 = {1, 2, 1, 2, 4, 1, 2, 4, 1, 1, 3};
-        ArrayList<Integer> modes3 = ArrayListAlgorithms.modes(intList20);
-        System.out.println(modes3);
+        // sort students
+        ArrayListAlgorithms.sortStudents(students);
 
-        int[] intList21 = {1, 2, 3, 4, 3, 2, 1, 4, 1, 2, 3};
-        ArrayList<Integer> modes4 = ArrayListAlgorithms.modes(intList21);
-        System.out.println(modes4);
-
-        // all numbers appear 1 time
-        int[] intList22 = {1, 2, 3, 4, 5, 6};
-        ArrayList<Integer> modes5 = ArrayListAlgorithms.modes(intList22);
-        System.out.println(modes5);
-
-        // all numbers appear 3 times
-        int[] intList23 = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 1, 2, 3, 4, 5, 6};
-        ArrayList<Integer> modes6 = ArrayListAlgorithms.modes(intList23);
-        System.out.println(modes6);
-
-        // this one has an extra 7, so 1, 2, 3, 4, 5, and 6 are all modes!
-        int[] intList24 = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6};
-        ArrayList<Integer> modes7 = ArrayListAlgorithms.modes(intList24);
-        System.out.println(modes7);
+        System.out.println("---------------------------");
+        System.out.println("SORTED:");
+        count = 1;
+        for (Student student : students) {
+            System.out.println(count + ": " + student);
+            count++;
+        }
     }
 }
