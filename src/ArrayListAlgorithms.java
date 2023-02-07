@@ -289,16 +289,34 @@ public class ArrayListAlgorithms {
      *  @param numList  numList of ints
      */
     public static ArrayList<Integer> modes(int[] numList) {
+        ArrayList<Integer> modes = new ArrayList<>();
         int maxValue = Integer.MIN_VALUE;
+        int maxFrequency = 0;
+        int distinctFrequencies = 0;
+
         for (int num : numList) {
             if (num > maxValue) {
                 maxValue = num;
             }
         }
-        int[] numFrequencies = new int[maxValue]
+
+        int[] numFrequencies = new int[maxValue + 1];
         for (int num : numList) {
             numFrequencies[num]++;
         }
 
+        for (int i = 1; i < numFrequencies.length; i++) {
+                if (numFrequencies[i] >= maxFrequency) {
+                    if (numFrequencies[i] > maxFrequency) {
+                        modes.clear();
+                        maxFrequency = numFrequencies[i];
+                        distinctFrequencies++;
+                    }
+                    modes.add(i);
+                } else {
+                    distinctFrequencies++;
+                }
+        }
+        return distinctFrequencies == 1 ? new ArrayList<>(Arrays.asList(new Integer[0])) : modes;
     }
 }
